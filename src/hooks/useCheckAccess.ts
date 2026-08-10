@@ -28,6 +28,7 @@ const useCheckAccess = (permissionId: string): boolean => {
   const { data: menuList } = useGetAppsMenu();
   const permissionStatus = useMemo(() => {
     try {
+      if (typeof window === 'undefined') return false;
       const accessMenuData = localStorage.getItem('accessMenu');
       // const accessMenuData = JSON.stringify(menuList);
 
