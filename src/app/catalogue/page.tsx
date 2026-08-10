@@ -95,10 +95,40 @@ export default function CataloguePage() {
             </ComponentWrapper>
 
             <ComponentWrapper name="TextStyle" location="shared/TextStyle">
-              <div className="flex flex-col gap-4 text-center">
-                <TextStyle variant="h1">Heading 1</TextStyle>
-                <TextStyle variant="body1">Body 1 Text Style</TextStyle>
-                <TextStyle variant="caption" color="gray">Caption Text Style</TextStyle>
+              <div className="flex flex-col gap-6 text-center w-full">
+                {/* Displays */}
+                <div className="border-b border-gray-200 pb-4 flex flex-col gap-2">
+                  <h4 className="text-sm font-bold text-gray-400 mb-4 uppercase tracking-widest">Displays</h4>
+                  <TextStyle variant="display1">Display 1 (display1)</TextStyle>
+                  <TextStyle variant="display2">Display 2 (display2)</TextStyle>
+                </div>
+
+                {/* Titles */}
+                <div className="border-b border-gray-200 pb-4 flex flex-col gap-2">
+                  <h4 className="text-sm font-bold text-gray-400 mb-4 uppercase tracking-widest">Titles</h4>
+                  <TextStyle variant="title1">Title 1 (title1)</TextStyle>
+                  <TextStyle variant="title2">Title 2 (title2)</TextStyle>
+                </div>
+
+                {/* Bodies */}
+                <div className="border-b border-gray-200 pb-4 flex flex-col gap-2">
+                  <h4 className="text-sm font-bold text-gray-400 mb-4 uppercase tracking-widest">Body Styles</h4>
+                  <TextStyle variant="body1">Body 1 (body1)</TextStyle>
+                  <TextStyle variant="body2">Body 2 (body2)</TextStyle>
+                  <TextStyle variant="body3">Body 3 (body3)</TextStyle>
+                  <TextStyle variant="body4">Body 4 (body4)</TextStyle>
+                  <TextStyle variant="body5">Body 5 (body5)</TextStyle>
+                  <TextStyle variant="body6">Body 6 (body6)</TextStyle>
+                  <TextStyle variant="body7">Body 7 (body7)</TextStyle>
+                </div>
+
+                {/* Buttons & Captions */}
+                <div className="pb-4 flex flex-col gap-2">
+                  <h4 className="text-sm font-bold text-gray-400 mb-4 uppercase tracking-widest">Buttons & Captions</h4>
+                  <TextStyle variant="buttonLarge">Button Large (buttonLarge)</TextStyle>
+                  <TextStyle variant="button">Button (button)</TextStyle>
+                  <TextStyle variant="caption" color="gray">Caption Text Style (caption)</TextStyle>
+                </div>
               </div>
             </ComponentWrapper>
 
@@ -190,15 +220,15 @@ export default function CataloguePage() {
             
             <ComponentWrapper name="Chart" location="shared/Chart">
               <div className="w-full flex flex-col gap-12">
-                <div>
+                <div className="flex flex-col mb-12">
                   <TextStyle variant="h3" className="mb-4">Bar Chart</TextStyle>
-                  <div className="h-[400px]">
+                  <div className="w-full">
                     <Chart type="GROUPED_BAR" data={CHART_DATA} />
                   </div>
                 </div>
-                <div>
+                <div className="flex flex-col">
                   <TextStyle variant="h3" className="mb-4">Pie Chart</TextStyle>
-                  <div className="h-[300px]">
+                  <div className="w-full">
                     <Chart type="PIE_RIGHT" data={PIE_CHART_DATA} />
                   </div>
                 </div>

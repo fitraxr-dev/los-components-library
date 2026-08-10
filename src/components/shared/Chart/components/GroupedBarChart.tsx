@@ -158,7 +158,7 @@ const GroupedBarChart = ({ chart_data }: GroupedBarChartProps) => {
     // Append the horizontal axis.
     svg.append('g')
       .attr('transform', `translate(0,${height - marginBottom})`)
-      .attr('style', 'font-size: 1.67vw')
+      .attr('style', 'font-size: 0.8rem')
       .call(d3.axisBottom(fx).tickSizeOuter(0))
       .call((g) => g.selectAll('.domain').remove());
 
@@ -179,8 +179,8 @@ const GroupedBarChart = ({ chart_data }: GroupedBarChartProps) => {
             {colors.map((value, i) => {
               return (
                 <ColumnWrapper margin={3} key={i} alignItems="center" sx={{ flexDirection: 'row' }}>
-                  <FiberManualRecordIcon sx={{ color: value.color, fontSize: '0.9vw' }} />
-                  <TextStyle weight={700} color="primary.text" marginLeft={1} sx={{ fontSize: '1.65vw' }}>
+                  <FiberManualRecordIcon sx={{ color: value.color, fontSize: '1rem' }} />
+                  <TextStyle weight={700} color="primary.text" marginLeft={1} sx={{ fontSize: '0.875rem' }}>
                     {value.label}
                   </TextStyle>
                 </ColumnWrapper>

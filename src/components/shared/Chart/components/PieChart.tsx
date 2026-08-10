@@ -134,11 +134,11 @@ const PieChart = ({ chart_data, direction }: PieChartProps) => {
             {chart_data.map((data, i) => {
               return (
                 <RowWrapper key={i} sx={{ '*:last-child': { marginLeft: 'auto' }, alignItems: 'center' }} overflow="auto" flexWrap="wrap">
-                  <FiberManualRecordIcon sx={{ color: data.color, fontSize: '0.9vw' }} />
-                  <TextStyle variant="body3" weight={700} color="primary.text" marginLeft={1}>
+                  <FiberManualRecordIcon sx={{ color: data.color, fontSize: '1rem' }} />
+                  <TextStyle variant="body4" weight={700} color="primary.text" marginLeft={1}>
                     {data.label}
                   </TextStyle>
-                  <TextStyle variant="body3" weight={700} color="custom.gray10" marginLeft={1}>
+                  <TextStyle variant="body4" weight={700} color="custom.gray10" marginLeft={1}>
                     {data.value}
                   </TextStyle>
                 </RowWrapper>
@@ -169,11 +169,11 @@ const PieChart = ({ chart_data, direction }: PieChartProps) => {
               {chart_data.map((data, i) => {
                 return (
                   <RowWrapper sx={{ '*:last-child': { marginLeft: 'auto' }, alignItems: 'center' }} key={i} overflow="auto" flexWrap="wrap">
-                    <FiberManualRecordIcon sx={{ color: data.color, fontSize: '0.9vw' }} />
-                    <TextStyle variant="body3" weight={700} color="primary.text" marginLeft={1}>
+                    <FiberManualRecordIcon sx={{ color: data.color, fontSize: '1rem' }} />
+                    <TextStyle variant="body4" weight={700} color="primary.text" marginLeft={1}>
                       {data.label}
                     </TextStyle>
-                    <TextStyle variant="body3" weight={700} color="custom.gray10" marginLeft={1}>
+                    <TextStyle variant="body4" weight={700} color="custom.gray10" marginLeft={1}>
                       {data.value}
                     </TextStyle>
                   </RowWrapper>
