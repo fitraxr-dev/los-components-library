@@ -1,0 +1,35 @@
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+
+import { API } from '@/helpers/api';
+
+import type { RequestByIdDtoString } from '@/services/openapi/notification-service';
+
+
+const useGetDetailMaintenanceNotificationBucket = (
+  payload: RequestByIdDtoString,
+) => {
+  const query = useQuery(
+    {
+      placeholderData: keepPreviousData,
+      queryFn: async () => {
+        try {
+          // const res = await api.getNotificationTemplateSubmissionDetail(payload);
+          const res = await API('notification.notification.getNotificationTemplateSubmissionDetail', { data: payload });
+          return res?.data;
+        } catch (err) {
+          console.error('API ERROR getNotificationTemplateSubmissionDetail:', err);
+          throw err;
+        }
+      },
+      queryKey: [
+        'maintenance-notification-detail-bucket',
+        payload
+      ],
+    }
+  );
+
+  return query;
+
+};
+
+export default useGetDetailMaintenanceNotificationBucket;

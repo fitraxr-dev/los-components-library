@@ -1,0 +1,4 @@
+// export const modal = {
+//   GROUP_BUSINESS: 'GROUP_BUSINESS',
+//   REQUEST_OTHER_PROCESS: 'REQUEST_OTHER_PROCESS',
+// };

@@ -1,0 +1,28 @@
+'use client';
+
+import React from 'react';
+
+import { TypeModule, TypeProcess } from '@/enums/Module';
+import useViewOnly from '@/hooks/useViewOnly';
+
+import ColumnWrapper from '@/components/shared/ColumnWrapper';
+import CorrectiveActionPlanForm from '@/components/shared/SmiTable/CorrectiveAction/CorrectiveActionPlanForm';
+
+
+const CorrectiveActionForm = () => {
+  const { viewOnly } = useViewOnly();
+
+  return (
+    <ColumnWrapper>
+      <CorrectiveActionPlanForm
+        module={TypeModule.MIP_REVIEW}
+        process={TypeProcess.MIP_REVIEW}
+        isBusinessResponse
+        isBusinessResponseMandatory={false}
+        viewOnly={viewOnly}
+      />
+    </ColumnWrapper>
+  );
+};
+
+export default CorrectiveActionForm;

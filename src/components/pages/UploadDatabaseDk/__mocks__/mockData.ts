@@ -1,0 +1,46 @@
+export const LIST_DATA = {
+  contents: [
+    {
+      bucketProcessId: 'PIPE-4066',
+      errorMessage: 'Required',
+      fileName: 'SMI_170823.CSV',
+      id: '0',
+      rowNumber: '2',
+      status: 'SUCCESS',
+      totalFailed: '0',
+      totalRows: '2',
+      totalSuccess: '2',
+      uploadBy: 'SMIADMIN1',
+      uploadDate: '2025-02-17T16:14:53.507+07:00',
+    },
+    {
+      bucketProcessId: 'PIPE-4067',
+      errorMessage: 'Required',
+      fileName: 'SMI(2)_170823.XLSX',
+      id: '1',
+      rowNumber: '1',
+      status: 'FAILED',
+      totalFailed: '1',
+      totalRows: '3',
+      totalSuccess: '2',
+      uploadBy: 'SMIADMIN1',
+      uploadDate: '2025-02-17T16:14:53.507+07:00',
+    },
+    {
+      bucketProcessId: 'PIPE-4068',
+      errorMessage: 'Required',
+      fileName: 'SMI_MASTERPAM.XLS',
+      id: '2',
+      rowNumber: '1',
+      status: 'SUCCESS',
+      totalFailed: '0',
+      totalRows: '3',
+      totalSuccess: '3',
+      uploadBy: 'SMIADMIN1',
+      uploadDate: '2025-02-17T16:14:53.507+07:00',
+    }
+  ],
+  page: {
+    totalPage: 1,
+  },
+};

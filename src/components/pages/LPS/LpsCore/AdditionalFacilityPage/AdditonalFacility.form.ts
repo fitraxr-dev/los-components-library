@@ -1,0 +1,18 @@
+export const INTIIAL_VALUES_ADDITIONAL_FACILITY = {
+  additionalType: '',
+  address: '',
+  fullName: '',
+  identityNumber: '',
+  name: '',
+  percentageOfFacilities: '',
+  projectPhaseStatus: '',
+  provisionFinancing: '',
+  remarks: '',
+  remarksInterestDate: '',
+  remarksProfitSharing: '',
+  remarksSourceOfFund: '',
+  sectorName: '',
+  skim: '',
+  sourceOfFund: '',
+  sourceOfFundProgram: '',
+};

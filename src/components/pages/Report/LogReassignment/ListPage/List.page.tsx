@@ -1,0 +1,36 @@
+'use client';
+
+import ColumnWrapper from '@/components/shared/ColumnWrapper';
+import Tabs, { TabItem } from '@/components/shared/Tabs';
+import Title from '@/components/shared/Title';
+
+import TabHistoryDownload from './components/TabHistoryDownload';
+import TabListData from './components/TabListData';
+import { tab, tabItems } from './List.constants';
+import useList from './List.hook';
+
+
+const ListPage = () => {
+  const { activeTab, handleChangeTab } = useList();
+
+  return (
+    <ColumnWrapper sx={{ gap: 2 }}>
+      <Title title="Log Reassignment" />
+      <Tabs
+        activeTab={activeTab}
+        onChange={(val: string) => handleChangeTab(val)}
+        items={tabItems}
+      />
+
+      <TabItem activeValue={activeTab} value={tab.LIST_DATA}>
+        <TabListData />
+      </TabItem>
+
+      <TabItem activeValue={activeTab} value={tab.HISTORY_DOWNLOAD}>
+        <TabHistoryDownload />
+      </TabItem>
+    </ColumnWrapper>
+  );
+};
+
+export default ListPage;

@@ -1,0 +1,3 @@
+export const MODAL = {
+  PARAMETER_SYARIAH_DETAIL: 'PARAMETER_SYARIAH_DETAIL',
+} as const;

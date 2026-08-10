@@ -1,0 +1,35 @@
+/* ==========================================================================
+   FUNCTION
+   ========================================================================== */
+
+@function color($color-name, $color-variant: false) {
+  @if $color-variant != false {
+    @return map-get(map-get($colors, $color-name), $color-variant);
+  } @else {
+    @return map-get($colors, $color-name);
+  }
+}
+
+@function fz($name) {
+  @return map-get($fz, $name);
+}
+
+@function lh($name) {
+  @return map-get($lh, $name);
+}
+
+@function fw($font-weight) {
+  @return map-get($fw, $font-weight);
+}
+
+@function screen($size) {
+  @return map-get($screen, $size);
+}
+
+@function lg($color-name, $direction: 113deg) {
+  @return linear-gradient(
+    $direction,
+    map-get(map-get($gradient, $color-name), 0) 0%,
+    map-get(map-get($gradient, $color-name), 100) 100%
+  );
+}

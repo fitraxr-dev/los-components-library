@@ -1,0 +1,7 @@
+export const modal = {
+  DEBTOR: 'DEBTOR',
+  MODAL_TABLE_DK: 'MODAL_TABLE_DK',
+
+};
+export const CREDIT_CHECKING_RESULT = 'CREDIT_CHECKING_RESULT';
+export const FAST_TRACK_MODULE = 'FAST_TRACK';

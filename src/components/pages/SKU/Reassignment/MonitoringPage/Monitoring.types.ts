@@ -1,0 +1,86 @@
+export interface MonitoringItem {
+  id?: string;
+  bucketProcessId?: string;
+  debtorId?: string | null;
+  module?: string;
+  process?: string;
+  bucketParentId?: string | null;
+  totalProposal?: string;
+  debtorName?: string | null;
+  groupName?: string | null;
+  cif?: string | null;
+  staffName?: string;
+  staffDivision?: string | null;
+  staffDivisionLabel?: string;
+  division?: string;
+  analystName?: string | null;
+  analystId?: string | null;
+  divisionId?: string | null;
+  staffId?: string | null;
+  createdAt?: string;
+  modifiedAt?: string;
+  modifiedBy?: string;
+  status?: string;
+  statusLabel?: string;
+  aging?: string;
+  dueDate?: string;
+  referenceDocument?: string | null;
+  referenceDocumentDate?: string | null;
+  pic?: string | null;
+  dataSource?: string | null;
+  dataSourceLabel?: string | null;
+  typeProcess?: string | null;
+  typeProcessLabel?: string | null;
+  typeSubmission?: string | null;
+  typeSubmissionLabel?: string | null;
+  financeType?: string | null;
+  financeTypeLabel?: string | null;
+  remarks?: string | null;
+  institutionType?: string | null;
+  institutionTypeLabel?: string | null;
+  sector?: string | null;
+  sectorLabel?: string | null;
+  infrastructureSector?: string | null;
+  infrastructureSectorLabel?: string | null;
+  infrastructureSectorOther?: string | null;
+  npwp?: string | null;
+  gamId?: string | null;
+  gamName?: string | null;
+  groupId?: string | null;
+  isNewClient?: boolean | null;
+  totalPlafon?: number;
+  currency?: string;
+  technicalMeetingDate?: string | null;
+  controllingParty?: string | null;
+  bucketMaster?: string | null;
+  bucketLabel?: string | null;
+  tlApprovedBy?: string | null;
+  tlApprovedate?: string | null;
+  kadivApprovedBy?: string | null;
+  kadivApprovedate?: string | null;
+  additionalData?: any | null;
+  creditorType?: string | null;
+  creditorName?: string | null;
+  eirr?: string | null;
+  digitalMemoDocumentNo?: string | null;
+  relatedProcess?: string | null;
+  isRegionalGovern?: boolean | null;
+}
+
+export interface MonitoringListResponse {
+  operationId: string | null;
+  errorCode: string;
+  errorDesc: string;
+  errorSource: string;
+  errorDetail: string | null;
+  timestamp: string;
+  data: {
+    contents: MonitoringItem[];
+    page: {
+      noPage: number;
+      itemPerPage: number;
+      totalPage: number;
+      totalData: number;
+    };
+  };
+}

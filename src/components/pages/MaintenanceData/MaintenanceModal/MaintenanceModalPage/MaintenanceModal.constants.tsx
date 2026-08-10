@@ -1,0 +1,4 @@
+export const modal = {
+  APPROVAL_MODAL: 'APPROVAL_MODAL',
+  HISTORY_MODAL: 'HISTORY_MODAL',
+};

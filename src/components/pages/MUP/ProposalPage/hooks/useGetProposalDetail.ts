@@ -1,0 +1,25 @@
+import { useQuery } from '@tanstack/react-query';
+
+import { ONE_MINUTE } from '@/configs/constants';
+import { FinancingProposalControllerApi } from '@/services/openapi/mip-service';
+
+import type { RequestByProcessIdDtoString } from '@/services/openapi/mip-service';
+
+
+const api = new FinancingProposalControllerApi();
+
+const useGetProposalDetail = (payload: RequestByProcessIdDtoString) => {
+  const query = useQuery({
+    queryFn: async () => {
+      const res = await api.getDetailFinancingProposal(payload);
+
+      return res?.data?.data?.content;
+    },
+    queryKey: ['mup-proposal-detail', payload],
+  });
+
+  return query;
+};
+
+
+export default useGetProposalDetail;

@@ -1,0 +1,157 @@
+import React, { useState } from 'react';
+
+import { create, useModal } from '@ebay/nice-modal-react';
+import { Box, useTheme } from '@mui/material';
+import { Controller } from 'react-hook-form';
+
+import useCheckFileDokument, { PDF_ONLY_MIME_TYPES } from '@/hooks/useCheckFileDokument';
+import closeNiceModal from '@/hooks/useCloseNiceModal';
+
+import Button from '@/components/shared/Button';
+import ColumnWrapper from '@/components/shared/ColumnWrapper';
+import Input from '@/components/shared/Input';
+import RowWrapper from '@/components/shared/RowWrapper';
+import SectionModal from '@/components/shared/SmiModal/SectionModal';
+
+import { modal } from './ModalUploadDocumentMUP.constants';
+import useModalUploadDocumentMUP from './ModalUploadDocumentMUP.hook';
+
+import type { ModalUploadDocumentMupProps } from './ModalUploadDocumentMUP.types';
+
+
+const ModalUploadDocumentMUP = create((props: ModalUploadDocumentMupProps) => {
+  const { id } = props;
+  const modalId = modal.UPLOAD_DOCUMENT_MUP;
+  const { visible } = useModal(modalId);
+  const theme = useTheme();
+  const [fileError, setFileError] = useState<string>('');
+  const { validateFile } = useCheckFileDokument({ acceptableMimeTypes: PDF_ONLY_MIME_TYPES });
+
+  const {
+    control,
+    handleOnSave,
+    handleOnCancel,
+    setValue,
+    handleSubmit,
+    isDirty,
+    isDocumentEmpty,
+    isSaveDocumentLoading,
+    setFileObject,
+  } = useModalUploadDocumentMUP(props);
+
+  return (
+    <SectionModal
+      title={`${id ? 'Edit Dokumen MUP' : 'Add New Dokumen MUP'}`}
+      isOpen={visible}
+      onClose={() => closeNiceModal(modalId)}
+      customFooter={() => null}
+      containerSx={{
+        minWidth: '52vw',
+      }}
+    >
+      <ColumnWrapper gap={theme.spacing(3)}>
+        <Box
+          sx={{
+            display: 'grid',
+            gridGap: theme.spacing(3),
+            gridTemplateColumns: 'repeat(2, 1fr)',
+          }}
+        >
+          <Controller
+            control={control}
+            name="uploadBy"
+            render={({ field, fieldState: { error } }) => (
+              <Input
+                {...field}
+                type="text"
+                disabled
+                label="Upload By"
+                placeholder="Upload By"
+                error={!!error}
+                helperText={error?.message}
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="uploadDate"
+            render={({ field, fieldState: { error } }) => (
+              <Input
+                {...field}
+                type="date"
+                disabled
+                label="Upload Date"
+                placeholder="Upload Date"
+                error={!!error}
+                helperText={error?.message}
+              />
+            )}
+          />
+        </Box>
+        <Controller
+          name="document"
+          control={control}
+          render={({ field: { onChange, ...field }, fieldState: { error } }) => (
+            <Input
+              {...field}
+              type="file"
+              label="Upload Dokumen123"
+              isMandatory={true}
+              placeholder="Upload Dokumen"
+              containerSx={{ flex: 1 }}
+              accept=".pdf"
+              onChange={(val) => {
+                const result = validateFile(val);
+                if (!result.isValid) {
+                  setFileError(result.errorMessage);
+                  setValue('document', null);
+                  setValue('documentName', null);
+                  return;
+                }
+
+                setFileError('');
+                onChange(val);
+                if (setFileObject) setFileObject(val.file);
+                setValue('documentName', val.name);
+              }}
+              error={!!error || !!fileError}
+              helperText={fileError || error?.message || 'Supported formats: PDF'}
+            />
+          )}
+        />
+        <Controller
+          name="documentName"
+          control={control}
+          render={({ field, fieldState: { error } }) => (
+            <Input
+              {...field}
+              type="text"
+              label="Nama Dokumen"
+              placeholder="Nama Dokumen"
+              containerSx={{ flex: 1 }}
+              error={!!error}
+              helperText={error?.message}
+              disabled={isDocumentEmpty}
+            />
+          )}
+        />
+        <RowWrapper justifyContent="end" gap={theme.spacing(3)}>
+          <Button
+            variant="outlined"
+            onClick={handleOnCancel}
+          >
+            Cancel
+          </Button>
+          <Button
+            disabled={!isDirty || isSaveDocumentLoading}
+            onClick={handleSubmit(handleOnSave)}
+          >
+            Save
+          </Button>
+        </RowWrapper>
+      </ColumnWrapper>
+    </SectionModal>
+  );
+});
+
+export default ModalUploadDocumentMUP;

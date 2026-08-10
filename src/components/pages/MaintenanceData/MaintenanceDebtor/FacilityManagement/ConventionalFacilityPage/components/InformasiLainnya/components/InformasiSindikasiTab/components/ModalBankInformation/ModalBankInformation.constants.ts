@@ -1,0 +1,3 @@
+export const modal = {
+  MODAL_BANK_INFORMATION: 'MODAL_BANK_INFORMATION',
+};

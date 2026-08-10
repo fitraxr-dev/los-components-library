@@ -1,0 +1,22 @@
+export const forbiddenPrefixes = [
+  'Perseroan Terbatas',
+  'Perusahaan Daerah',
+  'Pemerintah Pusat',
+  'Pemerintah Provinsi',
+  'Pemerintah Kotamadya',
+  'Pemerintah Kabupaten',
+  'PERJAN',
+  'PERUM',
+  'Koperasi',
+  'Yayasan',
+  'Firma',
+  'Perseorangan',
+  'PMA',
+  'Others',
+  'PT',
+  'PEMKOT',
+  'PEMKAB',
+  'Persero',
+  'TBK',
+  'PemProv'
+];

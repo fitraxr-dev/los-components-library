@@ -1,0 +1,333 @@
+import React, { useMemo } from 'react';
+
+import NiceModal, { useModal } from '@ebay/nice-modal-react';
+import { Box, useTheme } from '@mui/material';
+import dayjs from 'dayjs';
+
+import { DPOP_DIVISION } from '@/configs/constants';
+import { toCurrentDate, toDateStringNumber } from '@/helpers/date';
+import useApp from '@/hooks/useApp';
+import useCheckFileDokument, { XLSX_ONLY_MIME_TYPES } from '@/hooks/useCheckFileDokument';
+import closeNiceModal from '@/hooks/useCloseNiceModal';
+import useDivision from '@/hooks/useDivision';
+
+import Autocomplete from '@/components/shared/Autocomplete';
+import Button from '@/components/shared/Button';
+import ColumnWrapper from '@/components/shared/ColumnWrapper';
+import Input from '@/components/shared/Input';
+import RowWrapper from '@/components/shared/RowWrapper';
+import SectionModal from '@/components/shared/SmiModal/SectionModal';
+
+import {
+  documentCategoryDropdownList,
+  modal,
+  documentCategoryDropdownLisWithoutDocElo,
+} from './ModalUploadDocument.constants';
+import useModalUploadDocument from './ModalUploadDocument.hook';
+
+import type { ModalUploadDocumentProps } from './ModalUploadDocument.types';
+
+
+const ModalUploadDocument = NiceModal.create(({
+  ownerId,
+  withDocElo = true,
+  isDepi = false,
+  ...props
+}: ModalUploadDocumentProps) => {
+  const modalId = modal.MODAL_UPLOAD_DOCUMENT;
+  const { visible } = useModal(modalId);
+  const theme = useTheme();
+  const [state] = useApp();
+  const { divisionCode } = useDivision();
+
+  const isDpopDivision = divisionCode.includes(DPOP_DIVISION);
+  const isRM = state?.currentRole.includes('STAFF');
+
+  const isStaffDpop: boolean = isRM && isDpopDivision;
+
+  const showElo: boolean = isStaffDpop && withDocElo;
+
+  const {
+    isViewAllDocument,
+    debiturName,
+    documentGroupData,
+    documentTypeData,
+    handleSave,
+    isFetchDocumentGroupLoading,
+    isFetchDocumentTypeLoading,
+    isSaveLoading,
+    masintonChange,
+    masintonMultiChange,
+    masintonForm,
+    setKeyworDocumentGroup,
+    setKeyworDocumentType,
+    generateTitle,
+    documentDetailData,
+    isKtpOrNpwp,
+    isRatingUploadFile,
+    isViewOnly,
+    isFetchMemoOptionsLoading,
+    memoOptionsData,
+  } = useModalUploadDocument(props);
+
+  const isReadOnly = isViewAllDocument || isViewOnly;
+
+  const {
+    document,
+    documentCategory,
+    documentDate,
+    documentGroup,
+    documentName,
+    documentNumber,
+    documentType,
+    remark,
+  } = masintonForm;
+
+
+  const finalIsDepi = isDepi || isRatingUploadFile;
+  const { validateFile, acceptedFormatsText } = useCheckFileDokument(
+    finalIsDepi ? { acceptableMimeTypes: XLSX_ONLY_MIME_TYPES } : undefined
+  );
+
+  const isMandatoryEmpty =
+    !document.value ||
+    !documentCategory.value ||
+    !documentCategory.value?.id ||
+    !documentGroup.value ||
+    !documentGroup.value?.id ||
+    !documentType.value ||
+    !documentType.value?.id ||
+    !masintonForm.memoType.value?.value ||
+    !documentNumber.value ||
+    !documentDate.value;
+
+  const docoumentName = useMemo(() => {
+    return `${documentType?.value?.label ?? '[Jenis Dokumen]'}_${debiturName}_${documentNumber?.value && documentNumber.value.length !== 0 ? documentNumber.value : '[Dokumen Number]'}_${documentDate?.value ? dayjs(documentDate?.value).format('DDMMYYYY') : '[Tanggal Dokumen]'}`;
+  }, [documentType, debiturName, documentNumber, documentDate]);
+
+  const uploadedBy = documentDetailData?.modifiedBy ?? state?.userData?.user?.fullName;
+  const uploadedDate = !!documentDetailData?.modifiedDate ?
+    toDateStringNumber(documentDetailData.modifiedDate) :
+    toDateStringNumber(toCurrentDate());
+
+  const categoryList = showElo
+    ? documentCategoryDropdownList
+    : documentCategoryDropdownLisWithoutDocElo;
+
+  const getFileHelperText = () => {
+    if (document.value?.error && document.value?.errorMessage) {
+      return document.value.errorMessage;
+    }
+    if (document.error && document.errorMessage) {
+      return document.errorMessage;
+    }
+
+    if (finalIsDepi) {
+      return 'Supported formats: xlsx, xls';
+    }
+
+    return `Supported formats: ${acceptedFormatsText}`;
+  };
+
+  return (
+    <SectionModal
+      title={generateTitle(+props.id)}
+      isOpen={visible}
+      onClose={() => closeNiceModal(modalId)}
+      customFooter={() => null}
+      containerSx={{
+        minWidth: '52vw',
+      }}
+    >
+      <ColumnWrapper sx={{ gap: 3 }}>
+        <Box
+          sx={{
+            display: 'grid',
+            gridGap: theme.spacing(3),
+            gridTemplateColumns: 'repeat(2, 1fr)',
+          }}
+        >
+          <Input
+            label="Upload By"
+            placeholder="Upload By"
+            containerSx={{ flex: 1 }}
+            value={uploadedBy}
+            disabled
+          />
+          <Input
+            label="Upload Date"
+            placeholder="Upload Date"
+            containerSx={{ flex: 1 }}
+            value={uploadedDate}
+            disabled
+          />
+        </Box>
+        <Autocomplete
+          isMandatory
+          label="Kategori Dokumen"
+          placeholder="Kategori Dokumen"
+          dropdownList={categoryList}
+          disabled={isReadOnly}
+          value={documentCategory.value}
+          onChange={(val) => {
+            masintonMultiChange({
+              documentCategory: val,
+              documentGroup: '',
+              documentType: '',
+            });
+          }}
+          error={documentCategory.error}
+          helperText={documentCategory.error && documentCategory.errorMessage}
+        />
+        <Autocomplete
+          isMandatory
+          disabled={isReadOnly || !documentCategory.value || isKtpOrNpwp}
+          isLoading={isFetchDocumentGroupLoading}
+          label="Group Dokumen"
+          placeholder="Group Dokumen"
+          dropdownList={documentGroupData}
+          value={documentGroup.value}
+          onChange={(val) => {
+            masintonMultiChange({
+              documentGroup: val,
+              documentType: '',
+            });
+          }}
+          onInputChange={setKeyworDocumentGroup}
+          error={documentGroup.error}
+          helperText={documentGroup.error && documentGroup.errorMessage}
+        />
+        <Autocomplete
+          isMandatory
+          disabled={isReadOnly || !documentGroup.value || isKtpOrNpwp}
+          isLoading={isFetchDocumentTypeLoading}
+          label="Jenis Dokumen"
+          placeholder="Jenis Dokumen"
+          dropdownList={documentTypeData}
+          value={documentType.value}
+          onChange={(val) => { masintonChange('documentType', val); }}
+          onInputChange={setKeyworDocumentType}
+          error={documentType.error}
+          helperText={documentType.error && documentType.errorMessage}
+        />
+        <Autocomplete
+          isMandatory
+          disabled={isReadOnly || !documentType.value || isKtpOrNpwp}
+          isLoading={isFetchMemoOptionsLoading}
+          label="Jenis Memo"
+          placeholder="Jenis Memo"
+          dropdownList={memoOptionsData || []}
+          value={masintonForm.memoType.value}
+          onChange={(val) => {
+            console.log('val', val);
+            masintonChange('memoType', val);
+          }}
+          error={masintonForm.memoType.error}
+          helperText={masintonForm.memoType.error && masintonForm.memoType.errorMessage}
+        />
+        <Input
+          isMandatory
+          disabled={isReadOnly}
+          type="file"
+          label="Upload Dokumen"
+          placeholder="Upload Dokumen"
+          containerSx={{ flex: 1 }}
+          value={document.value}
+          onChange={(val) => {
+            const result = validateFile(val);
+            if (!result.isValid) {
+              masintonMultiChange({
+                document: { error: true, errorMessage: result.errorMessage },
+                documentName: null,
+              });
+              return;
+            }
+            masintonMultiChange({
+              document: val,
+              documentName: val.name,
+            });
+          }}
+          error={document.value?.error || document.error}
+          helperText={getFileHelperText()}
+          fileConstraint={finalIsDepi ? '.xls,.xlsx' : undefined}
+        />
+        <Input
+          isMandatory
+          disabled
+          label="Nama Dokumen"
+          placeholder="Input Nama Dokumen"
+          containerSx={{ flex: 1 }}
+          value={docoumentName}
+          error={documentName.error}
+          helperText={documentName.error && documentName.errorMessage}
+        />
+        <Box
+          sx={{
+            display: 'grid',
+            gridGap: theme.spacing(3),
+            gridTemplateColumns: 'repeat(2, 1fr)',
+
+          }}
+        >
+          <Input
+            label="Nomor Dokumen"
+            isMandatory
+            disabled={isReadOnly}
+            placeholder="Input Nomor Dokumen"
+            containerSx={{ flex: 1 }}
+
+            value={documentNumber.value}
+            onChange={(val) => { masintonChange('documentNumber', val); }}
+            error={documentNumber.error}
+            helperText={documentNumber.error && documentNumber.errorMessage}
+            withSymbols
+          />
+          <Input
+            type="date"
+            isMandatory
+            disabled={isReadOnly}
+            label="Tanggal Dokumen"
+            placeholder="Input Tanggal Dokumen"
+            containerSx={{ flex: 1 }}
+            value={documentDate.value}
+            onChange={(val) => { masintonChange('documentDate', val.toISOString()); }}
+            error={documentDate.error}
+            helperText={documentDate.error && documentDate.errorMessage}
+          />
+        </Box>
+        <Input
+          label="Keterangan"
+          disabled={isReadOnly}
+          placeholder="Input Keterangan"
+          type="area"
+          containerSx={{ flex: 1 }}
+          value={remark.value}
+          onChange={(val) => { masintonChange('remark', val); }}
+          error={remark.error}
+          helperText={remark.error && remark.errorMessage}
+        />
+
+        <RowWrapper sx={{ justifyContent: 'end' }}>
+          <Button
+            variant="outlined"
+            sx={{ mr: 3 }}
+            onClick={() => closeNiceModal(modalId)}
+          >
+            Cancel
+          </Button>
+          {!isReadOnly && (
+            <Button
+              disabled={isMandatoryEmpty}
+              isLoading={isSaveLoading}
+              onClick={handleSave}
+            >
+              Save
+            </Button>
+          )}
+        </RowWrapper>
+      </ColumnWrapper>
+    </SectionModal >
+  );
+});
+
+export default ModalUploadDocument;

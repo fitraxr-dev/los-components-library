@@ -1,0 +1,75 @@
+import dayjs from 'dayjs';
+
+import useGetShareholderById from '../../../hooks/useGetShareholderById';
+
+
+const useModalShareholderDetailExisting = (id: number) => {
+
+  const { data } = useGetShareholderById({ id });
+
+
+  let listDocuments = data?.listDocuments ?? [];
+
+  const cellData = [
+    {
+      key: 'name',
+      label: 'Nama',
+    },
+    {
+      key: 'jobPositionLabel',
+      label: 'Jabatan',
+    },
+    {
+      key: 'nik',
+      label: 'NIK',
+    },
+    {
+      key: 'npwpFile',
+      label: 'Document NPWP',
+    },
+    {
+      key: 'npwp',
+      label: 'NPWP',
+    },
+    {
+      key: 'nikFile',
+      label: 'Document NIK',
+    },
+    {
+      key: 'dob',
+      label: 'DOB',
+    }];
+
+  const cellDataWithDetail = cellData.map((item) => {
+    let url = '';
+    let value = data?.[item.key] ?? '-';
+
+    if (item.key === 'npwpFile') {
+      const document = listDocuments.find((el) => el.documentType === 'NPWP_MANAGEMENT');
+
+      value = document?.documentExtension === undefined ? '' : `${document?.fileName}`;
+      url = document?.document ?? '';
+    }
+
+    if (item.key === 'nikFile') {
+      const document = listDocuments.find((el) => el.documentType === 'NIK_MANAGEMENT');
+
+      value = document?.documentExtension === undefined ? '' : `${document?.fileName}`;
+      url = document?.document ?? '';
+    }
+
+
+    return {
+      ...item,
+      url,
+      value,
+    };
+  });
+
+
+  return {
+    cellDataWithDetail,
+  };
+};
+
+export default useModalShareholderDetailExisting;

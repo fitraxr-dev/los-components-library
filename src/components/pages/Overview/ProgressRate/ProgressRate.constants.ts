@@ -1,0 +1,15 @@
+export const OVERVIEW_CARDS = [
+  { key: 'pipeline', label: 'Pipeline' },
+  { key: 'mp', label: 'MP' },
+  { key: 'annualReview', label: 'Annual Review' },
+  { key: 'mpReview', label: 'MP Review' },
+  { key: 'mirReview', label: 'MIR Review' },
+  { key: 'mir', label: 'MIR' },
+  { key: 'mjm', label: 'MJM' },
+  { key: 'mlp', label: 'MLP' },
+  { key: 'sffp', label: 'SFFP' },
+  { key: 'risalahRapat', label: 'Risalah Rapat' },
+  { key: 'perkatanPembiayaan', label: 'Perkatan Pembiayaan' },
+  { key: 'loanProcessingBast', label: 'Loan Processing Summary - BAST' },
+  { key: 'loanProcessingCore', label: 'Loan Processing Summary - Core' },
+];

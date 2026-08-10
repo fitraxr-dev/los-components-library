@@ -1,0 +1,5 @@
+export const modal = {
+  DETAIL_MODAL: 'DETAIL_MODAL',
+  REJECT_MODAL: 'REJECT_MODAL',
+  SLA_PIPELINE_MODAL: 'PIPE',
+};

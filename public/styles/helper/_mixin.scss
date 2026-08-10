@@ -1,0 +1,371 @@
+
+
+@mixin large {
+  @media only screen and (max-width: screen(large)) {
+    @content;
+  }
+}
+
+@mixin high-medium {
+  @media only screen and (max-width: screen(high-medium)) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @media only screen and (max-width: screen(medium)) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media only screen and (max-width: screen(small)) {
+    @content;
+  }
+}
+
+@mixin ipad {
+  @media only screen and (max-width: screen(ipad)) {
+    @content;
+  }
+}
+
+@mixin phone {
+  @media only screen and (max-width: screen(phone)) {
+    @content;
+  }
+}
+
+@mixin iphone5 {
+  @media only screen and (max-width: screen(iphone5)) {
+    @content;
+  }
+}
+
+
+@mixin mq($width) {
+  @media only screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin mqMin($width) {
+  @media only screen and (min-width: $width) {
+    @content;
+  }
+}
+
+
+@mixin hover-button($type) {
+  &:hover {
+    color: color(white);
+    .a-system-icon {
+      color: color(white);
+    }
+  }
+  @if $type == "default" {
+    &:hover {
+      color: color(primary, hard);
+      .a-system-icon {
+        color: color(primary, hard);
+      }
+      background-color: color(white);
+      border-color: color(primary, hard);
+    }
+  } @else if $type == "contained" {
+    &:hover {
+      background-color: color(primary, hard);
+      border-color: color(primary, hard);
+    }
+  } @else if $type == "text" {
+    &:hover {
+      color: color(primary, dark);
+      .a-system-icon {
+        color: color(primary, dark);
+      }
+      background-color: transparent;
+      border-color: transparent;
+    }
+  } @else {
+    &:hover {
+      color: color(white);
+      background-color: color(primary, hard);
+      border-color: color(primary, hard);
+      .a-system-icon {
+        color: color(white);
+      }
+    }
+  }
+}
+
+
+@mixin placeholder-color($color) {
+  &::-webkit-input-placeholder {
+    color: $color;
+    -webkit-text-fill-color: $color;
+  }
+  &:-webkit-input-placeholder {
+    color: $color;
+    -webkit-text-fill-color: $color;
+  }
+  &::-moz-placeholder {
+    color: $color;
+    -webkit-text-fill-color: $color;
+  }
+  &:-moz-placeholder {
+    color: $color;
+    -webkit-text-fill-color: $color;
+  }
+  &::-ms-input-placeholder {
+    color: $color;
+    -webkit-text-fill-color: $color;
+  }
+  &:-ms-input-placeholder {
+    color: $color;
+    -webkit-text-fill-color: $color;
+  }
+  &:placeholder-shown {
+    color: $color;
+    -webkit-text-fill-color: $color;
+  }
+}
+
+@mixin active-visited-target-blank-button {
+  &:active{
+    @content;
+  }
+  .android-browser &,
+  .blackberry-browser &,
+  .ios-browser &,
+  .windows-phone-browser & {
+    &[target="_blank"]:hover {
+      @content;
+    }
+  }
+}
+
+@mixin active-visited-target-blank-action-button {
+  &:active,
+  &:visited {
+    @content;
+  }
+  .android-browser &,
+  .blackberry-browser &,
+  .ios-browser &,
+  .windows-phone-browser & {
+    &[target="_blank"]:hover {
+      @content;
+    }
+  }
+}
+
+@mixin font-weight-child {
+  .light {
+    font-weight: fw(light);
+  }
+  .reguler {
+    font-weight: fw(reguler);
+  }
+  strong,
+  .bold {
+    font-weight: fw(bold);
+  }
+  .black {
+    font-weight: fw(black);
+  }
+}
+
+@mixin font-weight-default-light {
+  font-weight: fw(light);
+  &.reguler {
+    font-weight: fw(reguler);
+  }
+  &.bold {
+    font-weight: fw(bold);
+  }
+  &.black {
+    font-weight: fw(black);
+  }
+  @include font-weight-child;
+}
+
+@mixin font-weight-default-reguler {
+  font-weight: fw(reguler);
+  &.light {
+    font-weight: fw(light);
+  }
+  &.bold {
+    font-weight: fw(bold);
+  }
+  &.black {
+    font-weight: fw(black);
+  }
+  @include font-weight-child;
+}
+
+@mixin font-weight-heading {
+  font-weight: fw(bold);
+  &.light {
+    font-weight: fw(light);
+  }
+  &.reguler {
+    font-weight: fw(reguler);
+  }
+  &.black {
+    font-weight: fw(black);
+  }
+  @include font-weight-child;
+}
+
+@mixin colors-all-font {
+  color: color(black);
+  &.primaryDark {
+    color: color(primary, dark);
+  }
+  &.primaryHard {
+    color: color(primary, hard);
+  }
+  &.grayMedium {
+    color: color(gray, medium);
+  }
+  &.graySoft {
+    color: color(gray, soft);
+  }
+  &.grayUltrasoft {
+    color: color(gray, ultrasoft);
+  }
+  &.error {
+    color: color(primary, medium);
+  }
+  &.warning {
+    color: color(warning, medium);
+  }
+  &.successful {
+    color: color(success, medium);
+  }
+  &.white {
+    color: color(white);
+  }
+}
+
+
+@mixin colors-all-label {
+  color: color(black);
+  &.primaryDark {
+    color: color(primary, dark);
+  }
+  &.primaryHard {
+    color: color(primary, hard);
+  }
+  &.darkHard {
+    color: color(dark, hard);
+  }
+  &.darkMedium {
+    color: color(dark, medium);
+  }
+  &.darkSoft {
+    color: color(dark, soft);
+  }
+  &.grayMedium {
+    color: color(gray, medium);
+  }
+  &.graySoft {
+    color: color(gray, soft);
+  }
+  &.grayUltrasoft {
+    color: color(gray, ultrasoft);
+  }
+  &.error {
+    color: color(primary, medium);
+  }
+  &.warning {
+    color: color(warning, medium);
+  }
+  &.successful {
+    color: color(success, medium);
+  }
+  &.white {
+    color: color(white);
+  }
+}
+
+// ---------------------------------------------------------------------------------
+// Text Crop
+// ---------------------------------------------------------------------------------
+@mixin text-crop(
+  $line-height: 1.3,
+  $top-adjustment: 0px,
+  $bottom-adjustment: 0px
+) {
+  // Configured in Step 1
+  $top-crop: 15;
+  $bottom-crop: 13;
+  $crop-font-size: 31;
+  $crop-line-height: 1.6;
+
+  // Apply values to calculate em-based margins that work with any font size
+  $dynamic-top-crop: max(
+      ($top-crop + ($line-height - $crop-line-height) * ($crop-font-size / 2)),
+      0
+    ) / $crop-font-size;
+  $dynamic-bottom-crop: max(
+      (
+        $bottom-crop + ($line-height - $crop-line-height) *
+          ($crop-font-size / 2)
+      ),
+      0
+    ) / $crop-font-size;
+
+  // Mixin output
+  line-height: $line-height;
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+  }
+
+  &::before {
+    margin-bottom: calc(-#{$dynamic-top-crop}em + #{$top-adjustment});
+  }
+
+  &::after {
+    margin-top: calc(-#{$dynamic-bottom-crop}em + #{$bottom-adjustment});
+  }
+}
+// Mixin generated at: http://text-crop.eightshapes.com/?typeface-selection=google-font&typeface=Lato&custom-typeface-name=Helvetica&custom-typeface-url=&custom-typeface-weight=400&custom-typeface-style=normal&weight-and-style=regular&size=31&line-height=1.6&top-crop=15&bottom-crop=13
+
+/* Usage Examples
+      .my-level-1-heading-class {
+          @include text-crop; // Will use default line height of 1.3
+          font-size: 48px;
+          margin: 0 0 0 16px;
+      }
+
+      .my-level-2-heading-class {
+          @include text-crop; // Will use default line height of 1.3
+          font-size: 32px; // Don't need to change any settings, will work with any font size automatically
+          margin: 0 0 0 16px;
+      }
+
+      .my-body-copy-class {
+          @include text-crop($line-height: 2); // Larger line height desired, set the line height via the mixin
+          font-size: 16px;
+      }
+
+      // Sometimes depending on the font-size, the rendering, the browser, etc. you may need to tweak the output.
+      // You can adjust the top and bottom cropping when invoking the component using the $top-adjustment and $bottom-adjustment settings
+
+      .slight-adjustment-needed {
+          @include text-crop($top-adjustment: -0.5px, $bottom-adjustment: 2px);
+          font-size: 17px;
+      }
+
+      .dont-do-this {
+          @include text-crop;
+          font-size: 16px;
+          line-height: 3; // DO NOT set line height outside of the mixin, the mixin needs the line height value to calculate the crop correctly
+      }
+  */

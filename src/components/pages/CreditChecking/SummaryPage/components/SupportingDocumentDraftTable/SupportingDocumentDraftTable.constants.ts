@@ -1,0 +1,3 @@
+export const modal = {
+  SUPPORTING_DOCUMENT_DRAFT: 'SUPPORTING_DOCUMENT_DRAFT',
+};

@@ -1,0 +1,3 @@
+export const modalId = {
+  MODAL_ADD_EXTERNAL_RATING: 'MODAL_ADD_EXTERNAL_RATING',
+};

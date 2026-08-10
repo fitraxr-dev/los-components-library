@@ -1,0 +1,3 @@
+export const modal = {
+  SPECIAL_APPROVAL_DETAIL: 'SPECIAL_APPROVAL_DETAIL',
+};

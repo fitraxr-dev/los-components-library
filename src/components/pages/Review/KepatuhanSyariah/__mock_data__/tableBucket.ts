@@ -1,0 +1,26 @@
+export default [
+  {
+    createdDate: '2023-08-23T03:35:26Z',
+    debtorName: '[nama_Customer]',
+    division: '[divisi]',
+    groupName: 'Angkasa Pura',
+    id: 1233,
+    pic: '[PIC]',
+    reviewId: '042023/000125',
+    startDate: '2023-08-23T03:35:26Z',
+    status: 'APPROVAL_TL',
+    statusLabel: 'APPROVAL',
+  },
+  {
+    createdDate: '2023-08-23T03:35:26Z',
+    debtorName: '[nama_Customer]',
+    division: '[divisi]',
+    groupName: 'Salim',
+    id: 432,
+    pic: '[PIC]',
+    reviewId: '042023/000125',
+    startDate: '2023-08-23T03:35:26Z',
+    status: 'APPROVAL_TL',
+    statusLabel: 'APPROVAL',
+  },
+];

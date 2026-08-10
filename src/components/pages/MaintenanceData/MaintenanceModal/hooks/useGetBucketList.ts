@@ -1,0 +1,25 @@
+import { useQuery } from '@tanstack/react-query';
+
+import { MaintenanceCapitalControllerApi } from '@/services/openapi/master-service';
+
+import type { GenericBucketRequestDtoString } from '@/services/openapi/master-service';
+
+
+const api = new MaintenanceCapitalControllerApi();
+
+const useGetBucketList = (
+  payload?: GenericBucketRequestDtoString,
+) => {
+  const query = useQuery({
+    // enabled: !!payload,
+    queryFn: async () => {
+      const res = await api.listBucketCapital(payload || {});
+      return res?.data?.data;
+    },
+    queryKey: ['bucket-list', payload],
+  });
+
+  return query;
+};
+
+export default useGetBucketList;

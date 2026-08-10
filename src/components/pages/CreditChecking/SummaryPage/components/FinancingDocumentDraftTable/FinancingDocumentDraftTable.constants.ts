@@ -1,0 +1,3 @@
+export const modal = {
+  FINANCING_DOCUMENT_DRAFT: 'FINANCING_DOCUMENT_DRAFT',
+};

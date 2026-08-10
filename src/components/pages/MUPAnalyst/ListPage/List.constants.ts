@@ -1,0 +1,83 @@
+import React from 'react';
+
+import { formatDate } from '@/helpers/date';
+
+import TextStyle from '@/components/shared/TextStyle';
+
+import type { TableHeader } from '@/components/shared/Table/Table.types';
+
+
+export const tableHeaderList: Array<TableHeader> = [
+  {
+    key: 'index',
+    label: 'No',
+    sx: {
+      minWidth: '4vw',
+    },
+    type: 'index',
+  },
+  {
+    key: 'bucketMaster',
+    label: 'Master ID',
+    sx: {
+      minWidth: '9vw',
+    },
+  },
+  {
+    key: 'id',
+    label: 'ID',
+    sx: {
+      minWidth: '9vw',
+    },
+  },
+  {
+    key: 'institutionTypeLabel',
+    label: 'Tipe Institusi',
+    sx: {
+      minWidth: '10vw',
+    },
+  },
+  {
+    key: 'debtorName',
+    label: 'Nama Customer',
+    sx: {
+      minWidth: '12vw',
+    },
+  },
+  {
+    key: 'staffDivisionLabel',
+    label: 'Divisi',
+    sx: {
+      minWidth: '10vw',
+    },
+  },
+  {
+    key: 'staffName',
+    label: 'Nama Staff',
+    sx: {
+      minWidth: '10vw',
+    },
+  },
+  {
+    key: 'modifiedAt',
+    label: 'Created Date',
+    render: (row) => React.createElement(TextStyle, { variant: 'body4' }, row.modifiedAt !== null ? formatDate(row.modifiedAt, 'DD MMM YYYY, HH:mm:ss') : formatDate(row.createdAt, 'DD MMM YYYY, HH:mm:ss')),
+    sx: { minWidth: '12vw' },
+    type: 'date',
+  },
+  {
+    key: 'dueDate',
+    label: 'Due Date',
+    sx: {
+      minWidth: '10vw',
+    },
+    type: 'date',
+  },
+  {
+    key: 'aging',
+    label: 'Aging',
+    sx: {
+      minWidth: '7vw',
+    },
+  },
+];

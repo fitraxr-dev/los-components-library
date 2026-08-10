@@ -1,0 +1,21 @@
+export interface SyariahFormsProps {
+  onChangeSyariahForm: (e) => void;
+  financingFacilityData?: any;
+  module?: string;
+  process?: string;
+  existing?: boolean;
+  facilityId?: string;
+  disabled?: boolean;
+  syariahComponentConfig?: {
+    id?: number;
+    productCode?: string;
+    productCodeReference?: string;
+    attributes?: Array<{
+      attributeKey?: string;
+      attributeLabel?: string;
+      attributeType?: string;
+      attributeFields?: string[];
+      attributeValue?: string;
+    }>;
+  };
+}

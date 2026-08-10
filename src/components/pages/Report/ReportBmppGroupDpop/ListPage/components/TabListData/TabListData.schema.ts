@@ -1,0 +1,22 @@
+import * as yup from 'yup';
+
+
+export const validationSchema = yup.object().shape({
+  conclusion: yup.array().of(yup.string()).optional(),
+  division: yup.array().of(yup.string()).optional(),
+  endDate: yup.string().optional()
+    .test('is-greater', 'End Date must be later than Start Date', function (value) {
+      const { startDate } = this.parent;
+      if (!startDate || !value) return true;
+      return new Date(value) >= new Date(startDate);
+    }),
+  groupName: yup.array().of(yup.string()).optional(),
+  groupRelation: yup.array().of(yup.string()).optional(),
+  groupType: yup.array().of(yup.string()).optional(),
+  startDate: yup.string().optional()
+    .test('is-less', 'Start Date must be earlier than End Date', function (value) {
+      const { endDate } = this.parent;
+      if (!endDate || !value) return true;
+      return new Date(value) <= new Date(endDate);
+    }),
+});

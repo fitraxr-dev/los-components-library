@@ -1,0 +1,88 @@
+export interface LimitAnak {
+  tracerId: string;
+  limitId: string;
+  pipelineId: string;
+  mataUangLimit: string;
+  nominalFasilitasLimit: string;
+  maksimalPenggunaan: string;
+  tanggalBerlaku: string;
+  tanggalBerakhir: string;
+  tanggalInputLimit: string;
+  frekuensiReview: string;
+  cifKelompok: string;
+  nilaiFasilitasOnline: string;
+  totalOutstanding: string;
+  nilaiKelonggaranTarik: string;
+  availableMarker: string;
+  penandaBmpk: string;
+  keteranganBmpp: string;
+  catatan1: string;
+  countryOfRisk: string;
+  countryPercent: string;
+  onlineUpdate: string;
+  liabilityNumber: string;
+  sebelumRestrukturisasiPlafon: string;
+  datiLokasiProyek: string;
+  baruPerpanjangan: string;
+  golonganKredit: string;
+  jenisPenggunaan: string;
+  orientasiPenggunaan: string;
+  sifatPiutang: string;
+  cabangPembukaanLimit: string;
+};
+
+export interface AttributeInterface {
+  id: number;
+  facilityId: string;
+  attributeKey: string;
+  attributeValue: string;
+  attributeLabel: string;
+}
+
+export interface LimitAnakV2 {
+  facilityId: number;
+  product: string;
+  productLabel: string;
+  customerName: string;
+  cif: string | null;
+  relationshipManager: string | null;
+  tracerIdNewLOS: string | null;
+  limitId: string;
+  pipelineId: string | null;
+  currency: string;
+  limitAmount: number | null;
+  maxUsage: number | null;
+  effectiveDate: string | null;
+  expiryDate: string | null;
+  limitInputDate: string | null;
+  apDate: string | null;
+  availableDrawdown: number | null;
+  reviewFrequency: string | null;
+  groupCIF: string | null;
+  onlineFacilityValue: number | null;
+  totalOutstanding: number;
+  bmpkMarker: string | null;
+  facilityAlias: string | null;
+  bmppDescription: string | null;
+  rateFee: number | null;
+  unusedAmount: number | null;
+  commitmentFee: number | null;
+  preRestructuringPlafond: number | null;
+  datiIILokasiProyek: string | null;
+  newOrExtension: string | null;
+  creditClassification: string | null;
+  usageType: string | null;
+  usageOrientation: string | null;
+  receivableNature: string | null;
+  availableMarker: string | null;
+  countryOfRisk: string | null;
+  countryPercent: number | null;
+  fixedOrVariable: string | null;
+  onlineUpdateDate: string | null;
+  limitBookingBranch: string | null;
+  unutilizedAccount: string | null;
+  rateType: string | null;
+  floatingReference: string | null;
+  spreadRatePinalty: number | null;
+  listAttributes: AttributeInterface[];
+}

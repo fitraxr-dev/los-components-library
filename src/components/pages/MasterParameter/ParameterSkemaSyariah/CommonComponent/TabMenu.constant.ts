@@ -1,0 +1,5 @@
+export const TAB = {
+  PROCESS: 'PROCESS',
+  SUMMARY: 'SUMMARY',
+  VALIDATION: 'VALIDATION',
+};

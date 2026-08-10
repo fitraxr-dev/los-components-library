@@ -1,0 +1,3 @@
+export const modal = {
+  DIGITAL_MEMO_DRAFT_MODAL: 'DIGITAL_MEMO_DRAFT_MODAL',
+};
