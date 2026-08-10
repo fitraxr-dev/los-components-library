@@ -1,0 +1,193 @@
+/* ==========================================================================
+   VARIABLES
+   ========================================================================== */
+
+/* ----------------------
+  - COLORS
+  ---------------------- */
+  $colors: (
+    // primary colors
+    primary:(
+      dark: #06377B,
+      hard: #0061A7,
+      medium: #FF4E46,
+      soft: #FFA8A3,
+      ultrasoft: #FFEDEB,
+    ),
+    // secondary colors
+    secondary: (
+      medium: #808080,
+      soft: #A8A8A8,
+      ultrasoft: #D0D0D0,
+    ),
+    gray: (
+      medium: #BCC8E7,
+      soft: #E6EAF3,
+      ultrasoft: #F4F7FB,
+    ),
+    yellow: #FFDD00,
+    white: #FFFFFF,
+    black: #000000,
+    dark: (
+      hard: #374062,
+      medium: #7B87AF,
+      soft: #AEB3C6,
+    ),
+    warning:(
+      medium: #FF6F6F,
+      soft: #FFE4E4,
+    ),
+    success: (
+      medium: #75D37F,
+      soft: #E7FFDC,
+    ),
+    info: (
+      medium: #66A3FF,
+      soft: #EAF2FF,
+    ),
+    alert: (
+      medium: #FFA24B,
+      soft: #FFF2E3,
+    ),
+    // overlay
+    overlay: (
+      80: rgba(#000, .8),
+      50: rgba(#000, .5),
+      20: rgba(#000, .2)
+    ),
+  );
+
+
+  $gradient: (
+    green:(
+      0: #015b4d,
+      100: #006757
+    )
+);
+
+$gradient: (
+  green: (
+    0: #015b4d,
+    100: #006757,
+  ),
+);
+
+/* ----------------------
+    - FONT
+    ---------------------- */
+// Font Size
+$fz: (
+  h1: 6.4rem,
+  mh1: 4rem,
+  h2: 4rem,
+  mh2: 2.6rem,
+  h3: 3rem,
+  mh3: 1.8rem,
+  h4: 2.4rem,
+  mh4: 1.6rem,
+  body: 2.5rem,
+  mbody: 2rem,
+  info: 1.75rem,
+  minfo: 1.5rem,
+  action: 1.3rem,
+  maction: 1.25rem,
+  label: 1.063rem,
+  mlabel: 0.9rem,
+  text: 0.75rem,
+  mtext: 0.625rem,
+  button-default: 0.938rem,
+  avatar32: 1.2rem,
+  avatarIcon32: 1.6rem,
+  avatar48: 1.8rem,
+  avatarIcon48: 2.4rem,
+  avatar64: 2rem,
+  avatarIcon64: 3.2rem,
+  avatar80: 2.4rem,
+  avatarIcon80: 4rem,
+  button-sm: 0.563rem,
+  button-md: 0.938rem,
+  form-default: 0.938rem,
+  mform-default: 0.6rem,
+  form-small: 0.938rem,
+  mform-small: 0.6rem,
+);
+
+// Line Height
+$lh: (
+  h1: 1.2,
+  mh1: 1.2,
+  h2: 1.4,
+  mh2: 1.33,
+  h3: 1.6,
+  mh3: 1.78,
+  h4: 1.33,
+  mh4: 1.5,
+  body: 1.6,
+  mbody: 1.5,
+  info: 1.5,
+  minfo: 1.71,
+  action: 2,
+  maction: 2,
+  label: 1.33,
+  mlabel: 1.6,
+  button-default: 1.25rem,
+  button-sm: 1.246rem,
+  button-md: 0.748rem,
+  form-default: 1.25,
+  mform-default: 1.25,
+  form-small: 1.25,
+  mform-small: 1.25,
+);
+
+// Font Weight
+$fw: (
+  light: 300,
+  reguler: 400,
+  bold: 700,
+  black: 900,
+);
+
+/* ----------------------
+    - RADIUS
+    ---------------------- */
+$radius: 2rem;
+
+/* ----------------------
+    - SCREEN
+    ---------------------- */
+$screen: (
+  large: 1440px,
+  high-medium: 1200px,
+  medium: 1024px,
+  small: 896px,
+  ipad: 768px,
+  phone: 480px,
+  iphone5: 320px,
+);
+
+/* ----------------------
+    - SHADOW
+    ---------------------- */
+$shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
+$shadow-bold: 0 2px 15px 0 rgba(0, 0, 0, 0.1), 0 2px 15px 0 rgba(0, 0, 0, 0.1);
+
+/* ----------------------
+    - SPACING
+    ---------------------- */
+$spacing-4: 0.4rem;
+$spacing-8: 0.8rem;
+$spacing-16: 1.6rem;
+$spacing-24: 2.4rem;
+$spacing-32: 3.2rem;
+$spacing-40: 4rem;
+$spacing-48: 4.8rem;
+$spacing-56: 5.6rem;
+$spacing-64: 6.4rem;
+$spacing-list: 0 4 8 16 24 32 40 48 56 64 72;
+
+/* ----------------------
+    - Z-INDEX
+    ---------------------- */
+  $z-header: 9;
+  $z-popup: 13;
+  $z-loader-page: 20;

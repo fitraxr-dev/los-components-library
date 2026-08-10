@@ -23,6 +23,12 @@ import Loader from '@/components/shared/Loader';
 import Progress from '@/components/shared/Progress';
 import Toast from '@/components/shared/Toast/Toast';
 
+import Chart from '@/components/shared/Chart';
+import { CHART_DATA, PIE_CHART_DATA } from '@/components/shared/Chart/Chart.types';
+import Stepper from '@/components/shared/Stepper';
+import Table from '@/components/shared/Table';
+
+
 // Form components
 import Input from '@/components/shared/Input';
 import Switch from '@/components/shared/Switch';
@@ -50,15 +56,15 @@ export default function CataloguePage() {
       <QueryClientProvider client={queryClient}>
         <AppProvider>
           <FormProvider {...methods}>
-            <div className="min-h-screen bg-[#09090b] text-gray-100 font-sans p-8 md:p-16 selection:bg-indigo-500/30">
+            <div className="min-h-screen bg-gray-50 text-gray-900 font-sans p-8 md:p-16 selection:bg-indigo-500/30">
           <header className="mb-16 max-w-5xl mx-auto text-center space-y-4">
             <div className="inline-block px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-medium tracking-wide mb-4">
               Components Library
             </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">
               Shared Catalogue
             </h1>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto mt-4">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mt-4">
               A beautiful, dynamic showcase of all shared components used across the platform.
             </p>
           </header>
@@ -97,12 +103,12 @@ export default function CataloguePage() {
             </ComponentWrapper>
 
             {/* LAYOUT & BASICS */}
-            <div className="pt-12 pb-4 border-b border-gray-800">
-              <h2 className="text-2xl font-bold text-white">Layout & Basics</h2>
+            <div className="pt-12 pb-4 border-b border-gray-300">
+              <h2 className="text-2xl font-bold text-gray-800">Layout & Basics</h2>
             </div>
 
             <ComponentWrapper name="RowWrapper & ColumnWrapper" location="shared/RowWrapper | ColumnWrapper">
-              <ColumnWrapper sx={{ gap: 2, p: 2, bgcolor: '#1a1a1a', width: '100%' }}>
+              <ColumnWrapper sx={{ gap: 2, p: 2, bgcolor: 'white', width: '100%' }}>
                 <TextStyle>This is a ColumnWrapper</TextStyle>
                 <RowWrapper sx={{ gap: 2 }}>
                   <Button variant="outlined">Row Item 1</Button>
@@ -115,8 +121,8 @@ export default function CataloguePage() {
               <VStack gap="16px">
                 <TextStyle>Vertical Stack</TextStyle>
                 <HStack gap="16px">
-                  <div className="p-4 bg-gray-800 rounded">Horizontal 1</div>
-                  <div className="p-4 bg-gray-800 rounded">Horizontal 2</div>
+                  <div className="p-4 bg-white border border-gray-200 shadow-sm rounded">Horizontal 1</div>
+                  <div className="p-4 bg-white border border-gray-200 shadow-sm rounded">Horizontal 2</div>
                 </HStack>
               </VStack>
             </ComponentWrapper>
@@ -131,7 +137,7 @@ export default function CataloguePage() {
               <div className="w-full space-y-8">
                 <Title title="Main Page Title" />
                 <SectionTitle title="Section Subtitle" subtitle="This is a section description." isOpen={true}>
-                  <div className="p-4 bg-gray-900 rounded">Section content</div>
+                  <div className="p-4 bg-white border border-gray-200 rounded">Section content</div>
                 </SectionTitle>
               </div>
             </ComponentWrapper>
@@ -149,8 +155,8 @@ export default function CataloguePage() {
             </ComponentWrapper>
 
             {/* FORM ELEMENTS */}
-            <div className="pt-12 pb-4 border-b border-gray-800">
-              <h2 className="text-2xl font-bold text-white">Form Elements</h2>
+            <div className="pt-12 pb-4 border-b border-gray-300">
+              <h2 className="text-2xl font-bold text-gray-800">Form Elements</h2>
             </div>
 
             <ComponentWrapper name="Input (Text)" location="shared/Input">
@@ -170,27 +176,71 @@ export default function CataloguePage() {
             </ComponentWrapper>
 
             <ComponentWrapper name="Other Form Components" location="shared/*">
-              <div className="text-center p-6 border border-dashed border-gray-700/50 text-gray-400 text-sm">
+              <div className="text-center p-6 border border-dashed border-gray-300/50 text-gray-600 text-sm">
                 Placeholder for CheckBox, Autocomplete, InputButton, MultiSelectAutoComplete, CheckboxSelectAll, CurrencyForm.
                 <br/>(Requires mock data and specific prop configurations).
               </div>
             </ComponentWrapper>
 
             {/* DATA DISPLAY & NAVIGATION */}
-            <div className="pt-12 pb-4 border-b border-gray-800">
-              <h2 className="text-2xl font-bold text-white">Data Display & Navigation</h2>
+            <div className="pt-12 pb-4 border-b border-gray-300">
+              <h2 className="text-2xl font-bold text-gray-800">Data Display & Navigation</h2>
             </div>
 
-            <ComponentWrapper name="Complex Data Components" location="shared/*">
-              <div className="text-center p-6 border border-dashed border-gray-700/50 text-gray-400 text-sm">
-                Placeholder for Table, TableV2, DndTable, Cell, Pagination, RichTextDisplay, GlobalStepper, Stepper, Tabs, SortableSection.
-                <br/>(Requires significant mocked columns, routes, and data arrays to render).
+            
+            <ComponentWrapper name="Chart" location="shared/Chart">
+              <div className="w-full flex flex-col gap-12">
+                <div>
+                  <TextStyle variant="h3" className="mb-4">Bar Chart</TextStyle>
+                  <div className="h-[400px]">
+                    <Chart type="GROUPED_BAR" data={CHART_DATA} />
+                  </div>
+                </div>
+                <div>
+                  <TextStyle variant="h3" className="mb-4">Pie Chart</TextStyle>
+                  <div className="h-[300px]">
+                    <Chart type="PIE_RIGHT" data={PIE_CHART_DATA} />
+                  </div>
+                </div>
               </div>
             </ComponentWrapper>
 
+            <ComponentWrapper name="Stepper" location="shared/Stepper">
+              <div className="w-full overflow-x-auto pb-4">
+                <Stepper 
+                  steps={[
+                    { title: 'Information', path: 'info', status: 1 },
+                    { title: 'Catalogue', path: 'catalogue', status: 1 },
+                    { title: 'Review', path: 'review', status: 0 },
+                    { title: 'Approval', path: 'approval', status: 0 },
+                  ] as any} 
+                  onClick={(path) => console.log(path)} 
+                />
+              </div>
+            </ComponentWrapper>
+
+            <ComponentWrapper name="Table (SmiTable Base)" location="shared/Table">
+              <div className="w-full bg-white rounded shadow-sm border border-gray-200">
+                <Table
+                  data={[
+                    { id: 1, name: 'Alice', role: 'Admin', status: 'Active' },
+                    { id: 2, name: 'Bob', role: 'Maker', status: 'Pending' },
+                    { id: 3, name: 'Charlie', role: 'Checker', status: 'Active' }
+                  ]}
+                  columns={[
+                    { id: 'name', label: 'User Name', width: 200 },
+                    { id: 'role', label: 'System Role', width: 150 },
+                    { id: 'status', label: 'Status', width: 100 }
+                  ]}
+                  withPagination={false}
+                />
+              </div>
+            </ComponentWrapper>
+
+
             {/* FEEDBACK & LOADERS */}
-            <div className="pt-12 pb-4 border-b border-gray-800">
-              <h2 className="text-2xl font-bold text-white">Feedback & Loaders</h2>
+            <div className="pt-12 pb-4 border-b border-gray-300">
+              <h2 className="text-2xl font-bold text-gray-800">Feedback & Loaders</h2>
             </div>
 
             <ComponentWrapper name="Loader" location="shared/Loader">
@@ -208,18 +258,18 @@ export default function CataloguePage() {
             </ComponentWrapper>
 
             {/* ADVANCED */}
-            <div className="pt-12 pb-4 border-b border-gray-800">
-              <h2 className="text-2xl font-bold text-white">Advanced & Specific</h2>
+            <div className="pt-12 pb-4 border-b border-gray-300">
+              <h2 className="text-2xl font-bold text-gray-800">Advanced & Specific</h2>
             </div>
 
             <ComponentWrapper name="Advanced Components" location="shared/*">
-              <div className="text-center p-6 border border-dashed border-gray-700/50 text-gray-400 text-sm">
+              <div className="text-center p-6 border border-dashed border-gray-300/50 text-gray-600 text-sm">
                 Placeholder for CallCenter, SmiComponent, SmiModal, SmiSection, SmiTable, Chart, WordEditor.
                 <br/>(Requires third-party syncfusion setups, mock API contexts, or dashboard layouts).
               </div>
             </ComponentWrapper>
             
-            <div className="text-center py-12 border-t border-dashed border-gray-700/50">
+            <div className="text-center py-12 border-t border-dashed border-gray-300/50">
               <p className="text-gray-500 font-mono text-sm">
                 All 52 components accounted for in the catalogue architecture.
               </p>

@@ -1,0 +1,31 @@
+export enum Module {
+  PIPELINE = 'PIPELINE',
+  MIP = 'MIP',
+  CREDIT_CHECKING = 'CREDIT_CHECKING',
+  MAINTENANCE_DEBTOR = 'MAINTENANCE_DEBTOR',
+}
+
+export enum Process {
+  PIPELINE = 'PIPELINE',
+  MIP = 'MIP',
+  CREDIT_CHECKING = 'CREDIT_CHECKING',
+  CREDIT_CHECKING_RESULT = 'CREDIT_CHECKING_RESULT',
+  CREDIT_CHECKING_SUMMARY = 'CREDIT_CHECKING_SUMMARY',
+  MAINTENANCE_DEBTOR = 'MAINTENANCE_DEBTOR',
+}
+
+export enum SyncfusionFormatGenerate {
+  PDF = 'pdf',
+  DOCX = 'docx'
+}
+
+export enum bmppType {
+  MIP = 'mip',
+  MUP = 'mup'
+}
+
+export enum MaintenanceComponent {
+  MANAGEMENT = 'MANAGEMENT',
+  SHAREHOLDER = 'SHAREHOLDER',
+  OTHER_RELATED_PARTIES = 'OTHER_RELATED_PARTIES',
+}
