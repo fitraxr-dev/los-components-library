@@ -27,6 +27,8 @@ import Chart from '@/components/shared/Chart';
 import { CHART_DATA, PIE_CHART_DATA } from '@/components/shared/Chart/Chart.types';
 import Stepper from '@/components/shared/Stepper';
 import Table from '@/components/shared/Table';
+import TableV2 from '@/components/shared/TableV2';
+import type { TableHeader } from '@/components/shared/TableV2/Table.types';
 
 
 // Form components
@@ -263,6 +265,46 @@ export default function CataloguePage() {
                     { id: 'status', label: 'Status', width: 100 }
                   ]}
                   withPagination={false}
+                />
+              </div>
+            </ComponentWrapper>
+
+            <ComponentWrapper name="TableV2" location="shared/TableV2">
+              <div className="w-full bg-white rounded shadow-sm border border-gray-200 p-4">
+                <TableV2
+                  tableHeader={[
+                    { key: 'index', label: 'No', type: 'index' },
+                    { key: 'id', label: 'Legal Checking ID' },
+                    { key: 'name', label: 'Name' },
+                    { key: 'startDate', label: 'Start Date' },
+                    { 
+                      key: 'status', 
+                      label: 'Status',
+                      render: (row) => (
+                        <Button
+                          noClick
+                          sx={{ px: 1, py: 0.5 }}
+                          textVariant="button"
+                          color={row.status === 'Approval TL' ? 'success' : 'warning'}
+                        >
+                          {row.status}
+                        </Button>
+                      ),
+                    },
+                    { 
+                      key: 'action', 
+                      label: 'Action', 
+                      type: 'action',
+                      options: [
+                        { iconName: 'detail', onClick: () => {} },
+                        { iconName: 'delete', onClick: () => {} },
+                      ] 
+                    }
+                  ]}
+                  tableData={[
+                    { groupName: 'Group1', pic: 'Group1', source: 'Bappenas', id: '042023/000125', name: 'Ahmad Waluyo', startDate: '25/May/2020', status: 'Approval TL' },
+                    { groupName: 'Group1', pic: 'Group1', source: 'Walk in Customer', id: '042024/000126', name: 'Putri Wahyudi', startDate: '25/May/2020', status: 'Monitoring' },
+                  ]}
                 />
               </div>
             </ComponentWrapper>
