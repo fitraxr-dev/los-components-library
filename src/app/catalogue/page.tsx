@@ -73,6 +73,49 @@ export default function CataloguePage() {
 
           <main className="max-w-5xl mx-auto space-y-12">
             
+<ComponentWrapper name="Color Palette" location="theme/light.ts">
+              <div className="flex flex-col gap-8 w-full">
+                
+                {/* Main Theme Colors */}
+                <div>
+                  <h4 className="text-sm font-bold text-gray-400 mb-4 uppercase tracking-widest text-left">Main Theme Colors</h4>
+                  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    {Object.entries(lightTheme.palette)
+                      .filter(([key, value]) => value && typeof value === 'object' && 'main' in value)
+                      .map(([key, value]) => (
+                        <div key={key} className="flex flex-col items-center gap-2">
+                          <div 
+                            className="w-full h-16 rounded-lg shadow-sm border border-gray-200" 
+                            style={{ backgroundColor: (value as any).main }}
+                          />
+                          <div className="text-sm font-medium text-gray-700">{key}</div>
+                          <div className="text-xs text-gray-500 font-mono">{(value as any).main}</div>
+                        </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Custom Colors */}
+                <div>
+                  <h4 className="text-sm font-bold text-gray-400 mb-4 uppercase tracking-widest text-left">Custom Colors</h4>
+                  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    {Object.entries(lightTheme.palette.custom || {})
+                      .map(([key, value]) => (
+                        <div key={key} className="flex flex-col items-center gap-2">
+                          <div 
+                            className="w-full h-12 rounded shadow-sm border border-gray-200" 
+                            style={{ backgroundColor: value as string }}
+                          />
+                          <div className="text-xs font-medium text-gray-700 text-center break-all">{key}</div>
+                          <div className="text-xs text-gray-500 font-mono">{value as string}</div>
+                        </div>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+            </ComponentWrapper>
+
             <ComponentWrapper name="ActionButtons" location="shared/ActionButtons">
               <ActionButtons 
                 actions={{
@@ -96,6 +139,7 @@ export default function CataloguePage() {
               </div>
             </ComponentWrapper>
 
+            
             <ComponentWrapper name="TextStyle" location="shared/TextStyle">
               <div className="flex flex-col gap-6 text-center w-full">
                 {/* Displays */}
